@@ -41,17 +41,17 @@ class ProdutosController extends Controller
         }
 
         if (!empty(request('url_imagem'))) {
-            
+            #C:/xampp/htdocs/api_produtos/public/storage/uploads
             $caminhoAbsoluto = public_path() . '/storage/uploads';
             #123112.jpg
             $nomeArquivo = time(). '.' . request('url_imagem')->extension();
-            #movendo para o projeto
+            #movendo o arquivo para o projeto
             request('url_imagem')->move($caminhoAbsoluto, $nomeArquivo);
             
             $produto= Produto::create([
                 'nome'=> request('nome'),
                 'descricao'=> request('descricao'),
-                'url_imagem'=> $nomeArquivo,
+                'url_imagem'=> url('/storage/uploads/' . $nomeArquivo),
                 'valor'=> request('valor')
             ]);
     
