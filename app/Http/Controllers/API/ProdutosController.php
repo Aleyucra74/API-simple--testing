@@ -17,7 +17,9 @@ class ProdutosController extends Controller
     public function index()
     {
         //
-        return 'oi';
+        $produtos - Produto::all();
+
+        return response($produtos, 200);
     }
 
     /**
@@ -99,5 +101,17 @@ class ProdutosController extends Controller
     public function destroy($id)
     {
         //
+        $produto = Produto::find($id);
+
+        if(!$produto){
+            $erro = ['mensagem' => 'Produto nao encontrado'];
+
+            return response(json_encode($erro), 401);
+        }
+
+        $produto->delete();
+
+        return response($produto, 200);
+
     }
 }

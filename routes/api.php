@@ -15,4 +15,5 @@ use Illuminate\Http\Request;
 Route::middleware(['cors'])->group(function(){
     Route::get('/produtos','API\ProdutosController@index');
     Route::post('/produtos','API\ProdutosController@store');
+    Route::delete('/produtos/{id}', 'API\ProdutosController@destroy');
 });
